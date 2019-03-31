@@ -8,8 +8,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+        InputOutput.readSettlements();
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("George R. R. Martin is a Hack Fraud");
         Scene scene = new Scene(root);

@@ -3,7 +3,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -11,287 +16,469 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
       <Pane prefWidth="1000.0">
             <ImageView fitHeight="1000.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../map.png" />
+                  <Image url="@../images/map.png" />
             </ImageView>
-            <Button layoutX="410.0" layoutY="213.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Longtable">
+            <Button focusTraversable="false" layoutX="410.0" layoutY="213.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Longtable">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="518.0" layoutY="190.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Grassy Vale">
+            <Button focusTraversable="false" layoutX="518.0" layoutY="190.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Grassy Vale">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="444.0" layoutY="162.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Bitterbridge">
+            <Button focusTraversable="false" layoutX="444.0" layoutY="162.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Bitterbridge">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="536.0" layoutY="111.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Tumbleton">
+            <Button focusTraversable="false" layoutX="536.0" layoutY="111.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Tumbleton">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="634.0" layoutY="58.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="King's Landing">
+            <Button focusTraversable="false" layoutX="634.0" layoutY="58.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="King's Landing">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="662.0" layoutY="27.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Crosby">
+            <Button focusTraversable="false" layoutX="662.0" layoutY="27.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Crosby">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="823.0" layoutY="2.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sharp Point">
+            <Button focusTraversable="false" layoutX="823.0" layoutY="2.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sharp Point">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="841.0" layoutY="27.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Stonedance">
+            <Button focusTraversable="false" layoutX="841.0" layoutY="27.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Stonedance">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="757.0" layoutY="157.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Haystack Hall">
+            <Button focusTraversable="false" layoutX="757.0" layoutY="157.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Haystack Hall">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="749.0" layoutY="178.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Bronzegate">
+            <Button focusTraversable="false" layoutX="749.0" layoutY="178.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Bronzegate">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="693.0" layoutY="188.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Felwood">
+            <Button focusTraversable="false" layoutX="693.0" layoutY="188.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Felwood">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="869.0" layoutY="211.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Evenfall Hall">
+            <Button focusTraversable="false" layoutX="869.0" layoutY="211.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Evenfall Hall">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="787.0" layoutY="228.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Storm's End">
+            <Button focusTraversable="false" layoutX="787.0" layoutY="228.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Storm's End">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="746.0" layoutY="258.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Griffin's Roost">
+            <Button focusTraversable="false" layoutX="746.0" layoutY="258.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Griffin's Roost">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="714.0" layoutY="298.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Crow's Nest">
+            <Button focusTraversable="false" layoutX="714.0" layoutY="298.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Crow's Nest">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="675.0" layoutY="331.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Stonehelm">
+            <Button focusTraversable="false" layoutX="675.0" layoutY="331.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Stonehelm">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="871.0" layoutY="290.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Rain House">
+            <Button focusTraversable="false" layoutX="871.0" layoutY="290.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Rain House">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="795.0" layoutY="341.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Mistwood">
+            <Button focusTraversable="false" layoutX="795.0" layoutY="341.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Mistwood">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="795.0" layoutY="381.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Weeping Tower">
+            <Button focusTraversable="false" layoutX="795.0" layoutY="381.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Weeping Tower">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="858.0" layoutY="365.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Greenstone">
+            <Button focusTraversable="false" layoutX="858.0" layoutY="365.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Greenstone">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="831.0" layoutY="490.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ghost Hill">
+            <Button focusTraversable="false" layoutX="831.0" layoutY="490.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ghost Hill">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="872.0" layoutY="560.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sunspear">
+            <Button focusTraversable="false" layoutX="872.0" layoutY="560.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sunspear">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="852.0" layoutY="548.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Planky Town">
+            <Button focusTraversable="false" layoutX="852.0" layoutY="551.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Planky Town">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="816.0" layoutY="588.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Lemonwood">
+            <Button focusTraversable="false" layoutX="816.0" layoutY="588.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Lemonwood">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="698.0" layoutY="605.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Salt Shore">
+            <Button focusTraversable="false" layoutX="698.0" layoutY="605.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Salt Shore">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="699.0" layoutY="547.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Godsgrace">
+            <Button focusTraversable="false" layoutX="699.0" layoutY="547.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Godsgrace">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="688.0" layoutY="491.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="The Tor">
+            <Button focusTraversable="false" layoutX="688.0" layoutY="491.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="The Tor">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="614.0" layoutY="562.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Vaith">
+            <Button focusTraversable="false" layoutX="614.0" layoutY="562.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Vaith">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="618.0" layoutY="432.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ghaston Grey">
+            <Button focusTraversable="false" layoutX="618.0" layoutY="432.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ghaston Grey">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="576.0" layoutY="369.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Wyl">
+            <Button focusTraversable="false" layoutX="576.0" layoutY="369.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Wyl">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="515.0" layoutY="344.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Blackhaven">
+            <Button focusTraversable="false" layoutX="515.0" layoutY="344.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Blackhaven">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="484.0" layoutY="381.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Vulture's Roost">
+            <Button focusTraversable="false" layoutX="482.0" layoutY="385.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Vulture's Roost">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="402.0" layoutY="350.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Nightsong">
+            <Button focusTraversable="false" layoutX="402.0" layoutY="350.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Nightsong">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="428.0" layoutY="382.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Tower of Joy">
+            <Button focusTraversable="false" layoutX="426.0" layoutY="388.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Tower of Joy">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="429.0" layoutY="412.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Kingsgrave">
+            <Button focusTraversable="false" layoutX="429.0" layoutY="412.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Kingsgrave">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="435.0" layoutY="452.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Skyreach">
+            <Button focusTraversable="false" layoutX="435.0" layoutY="452.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Skyreach">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="547.0" layoutY="462.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Yronwood">
+            <Button focusTraversable="false" layoutX="547.0" layoutY="462.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Yronwood">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="478.0" layoutY="562.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Hellholt">
+            <Button focusTraversable="false" layoutX="478.0" layoutY="562.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Hellholt">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="386.0" layoutY="562.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sandstone">
+            <Button focusTraversable="false" layoutX="386.0" layoutY="562.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sandstone">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="291.0" layoutY="504.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Starfall">
+            <Button focusTraversable="false" layoutX="291.0" layoutY="504.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Starfall">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="327.0" layoutY="478.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="High Hermitage">
+            <Button focusTraversable="false" layoutX="327.0" layoutY="478.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="High Hermitage">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="332.0" layoutY="435.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Blackmont">
+            <Button focusTraversable="false" layoutX="332.0" layoutY="435.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Blackmont">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="278.0" layoutY="299.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Highgarden">
+            <Button focusTraversable="false" layoutX="278.0" layoutY="299.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Highgarden">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="360.0" layoutY="253.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Cider Hall">
+            <Button focusTraversable="false" layoutX="360.0" layoutY="253.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Cider Hall">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="435.0" layoutY="268.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ashford">
+            <Button focusTraversable="false" layoutX="435.0" layoutY="268.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ashford">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="289.0" layoutY="155.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Goldengrove">
+            <Button focusTraversable="false" layoutX="289.0" layoutY="155.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Goldengrove">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="207.0" layoutY="132.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Red Lake">
+            <Button focusTraversable="false" layoutX="207.0" layoutY="132.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Red Lake">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="197.0" layoutY="81.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Cornfield">
+            <Button focusTraversable="false" layoutX="197.0" layoutY="81.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Cornfield">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="107.0" layoutY="96.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Crakehall">
+            <Button focusTraversable="false" layoutX="107.0" layoutY="96.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Crakehall">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="157.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Lannisport">
+            <Button focusTraversable="false" layoutX="157.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Lannisport">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="283.0" layoutY="19.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Silverhill">
+            <Button focusTraversable="false" layoutX="283.0" layoutY="19.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Silverhill">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="143.0" layoutY="194.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Old Oak">
+            <Button focusTraversable="false" layoutX="143.0" layoutY="194.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Old Oak">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="99.0" layoutY="357.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Bandallon">
+            <Button focusTraversable="false" layoutX="99.0" layoutY="357.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Bandallon">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="166.0" layoutY="359.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Brightwater Keep">
+            <Button focusTraversable="false" layoutX="166.0" layoutY="359.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Brightwater Keep">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="176.0" layoutY="400.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Honeyholt">
+            <Button focusTraversable="false" layoutX="176.0" layoutY="400.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Honeyholt">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="220.0" layoutY="438.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Uplands">
+            <Button focusTraversable="false" layoutX="220.0" layoutY="438.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Uplands">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="157.0" layoutY="440.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Oldtown">
+            <Button focusTraversable="false" layoutX="157.0" layoutY="440.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Oldtown">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="119.0" layoutY="497.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Three Towers">
+            <Button focusTraversable="false" layoutX="119.0" layoutY="497.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Three Towers">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="96.0" layoutY="467.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Blackcrown">
+            <Button focusTraversable="false" layoutX="96.0" layoutY="467.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Blackcrown">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="205.0" layoutY="563.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sunflower Hall">
+            <Button focusTraversable="false" layoutX="205.0" layoutY="563.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sunflower Hall">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="83.0" layoutY="603.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Starfish Harbour">
+            <Button focusTraversable="false" layoutX="83.0" layoutY="603.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Starfish Harbour">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="67.0" layoutY="582.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ryamsport">
+            <Button focusTraversable="false" layoutX="67.0" layoutY="582.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ryamsport">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="46.0" layoutY="563.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Vinetown">
+            <Button focusTraversable="false" layoutX="46.0" layoutY="563.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Vinetown">
          <font>
             <Font size="9.0" />
          </font></Button>
-            <Button layoutX="611.0" layoutY="264.0" mnemonicParsing="false" onAction="#test" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Summerhall">
+            <Button layoutX="611.0" layoutY="264.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Summerhall">
          <font>
             <Font size="9.0" />
          </font></Button>
       </Pane>
-      <VBox prefHeight="667.0" prefWidth="250.0">
-         <Label text="Starting Point:" />
-         <TextField fx:id="startField" onMouseClicked="#selectField">
-            <VBox.margin>
-               <Insets bottom="5.0" />
-            </VBox.margin>
-         </TextField>
-         <Label layoutX="10.0" layoutY="10.0" text="Destination:" />
-         <TextField fx:id="destField" layoutX="10.0" layoutY="10.0" onMouseClicked="#selectField">
-            <VBox.margin>
-               <Insets bottom="10.0" />
-            </VBox.margin>
-         </TextField>
-         <Button mnemonicParsing="false" text="Find Route">
-            <VBox.margin>
-               <Insets left="75.0" />
-            </VBox.margin>
-         </Button>
-      <padding>
-         <Insets left="10.0" right="10.0" top="20.0" />
-      </padding></VBox>
+   <Pane>
+      <children>
+            <VBox fx:id="menuPane" layoutX="1.0" layoutY="3.0" prefHeight="617.0" prefWidth="250.0">
+               <Label text="Starting Point:" />
+               <TextField fx:id="startField" onMouseClicked="#selectField">
+                  <VBox.margin>
+                     <Insets bottom="5.0" />
+                  </VBox.margin>
+               </TextField>
+               <Label layoutX="10.0" layoutY="10.0" text="Destination:" />
+               <TextField fx:id="destField" layoutX="10.0" layoutY="10.0" onMouseClicked="#selectField">
+                  <VBox.margin>
+                     <Insets bottom="10.0" />
+                  </VBox.margin>
+               </TextField>
+               <Button mnemonicParsing="false" onAction="#findRoute" text="Find Route">
+                  <VBox.margin>
+                     <Insets bottom="20.0" left="75.0" />
+                  </VBox.margin>
+               </Button>
+            <Label text="Maximum Number of Routes:" />
+            <HBox />
+            <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="230.0">
+               <children>
+                  <Slider fx:id="maxRoutesSlider" blockIncrement="5.0" onKeyPressed="#updateMaxRoutes" onMouseReleased="#updateMaxRoutes" value="50.0" />
+                  <TextField fx:id="maxRoutesText" onAction="#updateMaxRoutes" prefHeight="25.0" prefWidth="30.0" text="50" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </HBox>
+            <Label text="Prioritise...">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Label>
+            <RadioButton fx:id="radioShortest" mnemonicParsing="false" onAction="#updateRoutePriority" selected="true" text="Shortest Route">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="15.0" />
+               </VBox.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="priorityGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="radioEasiest" layoutX="20.0" layoutY="314.0" mnemonicParsing="false" onAction="#updateRoutePriority" text="Easiest Route" toggleGroup="$priorityGroup">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="15.0" />
+               </VBox.margin>
+            </RadioButton>
+            <RadioButton fx:id="radioSafest" layoutX="20.0" layoutY="331.0" mnemonicParsing="false" onAction="#updateRoutePriority" text="Safest Route" toggleGroup="$priorityGroup">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="15.0" />
+               </VBox.margin>
+            </RadioButton>
+            <Label text="Add Waypoints:">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Label>
+            <ListView fx:id="waypointsView" prefHeight="200.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </ListView>
+            <HBox prefHeight="43.0" prefWidth="230.0">
+               <children>
+                  <TextField fx:id="waypointField" onMouseClicked="#selectField" promptText="Settlement...">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#addWaypoint" text="Add">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <padding>
+               <Insets left="10.0" right="10.0" top="20.0" />
+            </padding>
+         </VBox>
+         <VBox fx:id="settingsPane" layoutX="1.0" layoutY="3.0" prefHeight="617.0" prefWidth="250.0" visible="false">
+            <padding>
+               <Insets left="10.0" right="10.0" top="20.0" />
+            </padding>
+            <children>
+               <Label text="Add Exclusions:" />
+               <ListView prefHeight="150.0" prefWidth="230.0">
+                  <VBox.margin>
+                     <Insets bottom="5.0" />
+                  </VBox.margin>
+               </ListView>
+               <HBox prefWidth="230.0">
+                  <children>
+                     <TextField prefWidth="150.0" promptText="Settlement..." />
+                     <Button mnemonicParsing="false" text="Add">
+                        <HBox.margin>
+                           <Insets left="15.0" />
+                        </HBox.margin>
+                     </Button>
+                  </children>
+                  <VBox.margin>
+                     <Insets bottom="15.0" />
+                  </VBox.margin>
+               </HBox>
+               <Label layoutX="20.0" layoutY="30.0" text="Add Settlement:" />
+               <HBox layoutX="20.0" layoutY="197.0" prefWidth="230.0">
+                  <children>
+                     <TextField prefWidth="150.0" promptText="Placename..." />
+                     <Button mnemonicParsing="false" text="Add">
+                        <HBox.margin>
+                           <Insets left="15.0" />
+                        </HBox.margin>
+                     </Button>
+                  </children>
+                  <VBox.margin>
+                     <Insets bottom="5.0" />
+                  </VBox.margin>
+               </HBox>
+               <HBox />
+               <HBox prefWidth="200.0">
+                  <children>
+                     <TextField prefHeight="25.0" prefWidth="70.0" promptText="X Position" />
+                     <TextField prefHeight="25.0" prefWidth="70.0" promptText="Y Position">
+                        <HBox.margin>
+                           <Insets left="10.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+                  <VBox.margin>
+                     <Insets bottom="15.0" />
+                  </VBox.margin>
+               </HBox>
+               <Label layoutX="20.0" layoutY="237.0" text="Add Route:" />
+               <HBox prefWidth="230.0">
+                  <children>
+                     <VBox prefWidth="150.0">
+                        <children>
+                           <TextField prefWidth="150.0" promptText="Startpoint...">
+                              <VBox.margin>
+                                 <Insets bottom="2.0" />
+                              </VBox.margin>
+                           </TextField>
+                           <TextField layoutX="10.0" layoutY="10.0" prefWidth="150.0" promptText="Endpoint...">
+                              <VBox.margin>
+                                 <Insets bottom="2.0" />
+                              </VBox.margin>
+                           </TextField>
+                           <TextField layoutX="10.0" layoutY="35.0" prefWidth="150.0" promptText="Distance...">
+                              <VBox.margin>
+                                 <Insets bottom="2.0" />
+                              </VBox.margin>
+                           </TextField>
+                           <TextField layoutX="10.0" layoutY="60.0" prefWidth="150.0" promptText="Difficulty...">
+                              <VBox.margin>
+                                 <Insets bottom="2.0" />
+                              </VBox.margin>
+                           </TextField>
+                           <TextField layoutX="10.0" layoutY="85.0" prefWidth="150.0" promptText="Danger...">
+                              <VBox.margin>
+                                 <Insets bottom="10.0" />
+                              </VBox.margin></TextField>
+                        </children>
+                     </VBox>
+                     <Button mnemonicParsing="false" text="Add">
+                        <HBox.margin>
+                           <Insets left="15.0" />
+                        </HBox.margin>
+                     </Button>
+                  </children>
+               </HBox>
+               <HBox fx:id="routeWarningBox">
+                  <children>
+                     <Label prefHeight="59.0" prefWidth="141.0" text="Route already exists!          Would you like to update it?" wrapText="true" />
+                     <VBox>
+                        <children>
+                           <Button mnemonicParsing="false" text="Update">
+                              <VBox.margin>
+                                 <Insets bottom="5.0" />
+                              </VBox.margin>
+                           </Button>
+                           <Button mnemonicParsing="false" prefWidth="55.0" text="Cancel" />
+                        </children>
+                        <HBox.margin>
+                           <Insets left="10.0" />
+                        </HBox.margin>
+                     </VBox>
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+         <ToggleButton fx:id="settingsButton" layoutX="195.0" layoutY="620.0" mnemonicParsing="false" onAction="#toggleView" prefHeight="25.0" prefWidth="32.0">
+            <graphic>
+               <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/settings.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </ToggleButton>
+      </children>
+   </Pane>
 </HBox>
