@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -17,270 +18,462 @@
 <?import javafx.scene.text.Font?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
-      <Pane prefWidth="1000.0">
-            <ImageView fitHeight="1000.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+      <Pane fx:id="tempId" prefWidth="1000.0">
+            <ImageView fitHeight="1000.0" fitWidth="1000.0" onMouseClicked="#selectLocation" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../images/map.png" />
             </ImageView>
-            <Button focusTraversable="false" layoutX="410.0" layoutY="213.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Longtable">
+            <Button focusTraversable="false" layoutX="410.0" layoutY="213.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Longtable">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="518.0" layoutY="190.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Grassy Vale">
+         </font>
+         <tooltip>
+            <Tooltip text="Longtable" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="518.0" layoutY="190.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Grassy Vale">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="444.0" layoutY="162.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Bitterbridge">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Grassy Vale" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="444.0" layoutY="162.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Bitterbridge">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="536.0" layoutY="111.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Tumbleton">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Bitterbridge" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="536.0" layoutY="111.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Tumbleton">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="634.0" layoutY="58.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="King's Landing">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Tumbleton" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="634.0" layoutY="58.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="King's Landing">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="662.0" layoutY="27.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Crosby">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="King's Landing" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="662.0" layoutY="27.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Crosby">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="823.0" layoutY="2.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sharp Point">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Crosby" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="823.0" layoutY="2.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sharp Point">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="841.0" layoutY="27.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Stonedance">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Sharp Point" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="841.0" layoutY="27.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Stonedance">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="757.0" layoutY="157.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Haystack Hall">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Stonedance" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="757.0" layoutY="157.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Haystack Hall">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="749.0" layoutY="178.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Bronzegate">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Haystack Hall" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="749.0" layoutY="178.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Bronzegate">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="693.0" layoutY="188.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Felwood">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Bronzegate" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="693.0" layoutY="188.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Felwood">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="869.0" layoutY="211.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Evenfall Hall">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Felwood" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="869.0" layoutY="211.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Evenfall Hall">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="787.0" layoutY="228.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Storm's End">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Evenfall Hall" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="787.0" layoutY="228.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Storm's End">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="746.0" layoutY="258.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Griffin's Roost">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Storm's End" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="746.0" layoutY="258.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Griffin's Roost">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="714.0" layoutY="298.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Crow's Nest">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Griffin's Roost" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="714.0" layoutY="298.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Crow's Nest">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="675.0" layoutY="331.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Stonehelm">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Crow's Nest" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="675.0" layoutY="331.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Stonehelm">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="871.0" layoutY="290.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Rain House">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Stonehelm" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="871.0" layoutY="290.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Rain House">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="795.0" layoutY="341.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Mistwood">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Rain House" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="795.0" layoutY="341.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Mistwood">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="795.0" layoutY="381.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Weeping Tower">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Mistwood" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="795.0" layoutY="381.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Weeping Tower">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="858.0" layoutY="365.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Greenstone">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Weeping Tower" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="858.0" layoutY="365.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Greenstone">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="831.0" layoutY="490.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ghost Hill">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Greenstone" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="831.0" layoutY="490.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ghost Hill">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="872.0" layoutY="560.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sunspear">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Ghost Hill" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="872.0" layoutY="560.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sunspear">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="852.0" layoutY="551.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Planky Town">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Sunspear" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="852.0" layoutY="551.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Planky Town">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="816.0" layoutY="588.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Lemonwood">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Planky Town" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="816.0" layoutY="588.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Lemonwood">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="698.0" layoutY="605.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Salt Shore">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Lemonwood" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="698.0" layoutY="605.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Salt Shore">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="699.0" layoutY="547.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Godsgrace">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Salt Shore" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="699.0" layoutY="547.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Godsgrace">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="688.0" layoutY="491.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="The Tor">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Godsgrace" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="688.0" layoutY="491.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="The Tor">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="614.0" layoutY="562.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Vaith">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="The Tor" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="614.0" layoutY="562.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Vaith">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="618.0" layoutY="432.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ghaston Grey">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Vaith" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="618.0" layoutY="432.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ghaston Grey">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="576.0" layoutY="369.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Wyl">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Ghaston Grey" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="576.0" layoutY="369.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Wyl">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="515.0" layoutY="344.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Blackhaven">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Wyl" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="515.0" layoutY="344.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Blackhaven">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="482.0" layoutY="385.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Vulture's Roost">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Blackhaven" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="482.0" layoutY="385.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Vulture's Roost">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="402.0" layoutY="350.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Nightsong">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Vulture's Roost" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="402.0" layoutY="350.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Nightsong">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="426.0" layoutY="388.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Tower of Joy">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Nightsong" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="426.0" layoutY="388.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Tower of Joy">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="429.0" layoutY="412.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Kingsgrave">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Tower of Joy" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="429.0" layoutY="412.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Kingsgrave">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="435.0" layoutY="452.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Skyreach">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Kingsgrave" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="435.0" layoutY="452.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Skyreach">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="547.0" layoutY="462.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Yronwood">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Skyreach" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="547.0" layoutY="462.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Yronwood">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="478.0" layoutY="562.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Hellholt">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Yronwood" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="478.0" layoutY="562.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Hellholt">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="386.0" layoutY="562.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sandstone">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Hellholt" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="386.0" layoutY="562.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sandstone">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="291.0" layoutY="504.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Starfall">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Sandstone" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="291.0" layoutY="504.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Starfall">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="327.0" layoutY="478.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="High Hermitage">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Starfall" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="327.0" layoutY="478.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="High Hermitage">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="332.0" layoutY="435.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Blackmont">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="High Hermitage" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="332.0" layoutY="435.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Blackmont">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="278.0" layoutY="299.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Highgarden">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Blackmont" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="278.0" layoutY="299.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Highgarden">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="360.0" layoutY="253.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Cider Hall">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Highgarden" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="360.0" layoutY="253.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Cider Hall">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="435.0" layoutY="268.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ashford">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Cider Hall" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="435.0" layoutY="268.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ashford">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="289.0" layoutY="155.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Goldengrove">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Ashford" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="289.0" layoutY="155.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Goldengrove">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="207.0" layoutY="132.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Red Lake">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Goldengrove" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="207.0" layoutY="132.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Red Lake">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="197.0" layoutY="81.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Cornfield">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Red Lake" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="197.0" layoutY="81.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Cornfield">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="107.0" layoutY="96.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Crakehall">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Cornfield" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="107.0" layoutY="96.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Crakehall">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="157.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Lannisport">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Crakehall" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="157.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Lannisport">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="283.0" layoutY="19.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Silverhill">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Lannisport" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="283.0" layoutY="19.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Silverhill">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="143.0" layoutY="194.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Old Oak">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Silverhill" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="143.0" layoutY="194.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Old Oak">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="99.0" layoutY="357.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Bandallon">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Old Oak" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="99.0" layoutY="357.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Bandallon">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="166.0" layoutY="359.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Brightwater Keep">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Bandallon" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="166.0" layoutY="359.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Brightwater Keep">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="176.0" layoutY="400.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Honeyholt">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Brightwater Keep" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="176.0" layoutY="400.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Honeyholt">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="220.0" layoutY="438.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Uplands">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Honeyholt" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="220.0" layoutY="438.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Uplands">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="157.0" layoutY="440.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Oldtown">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Uplands" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="157.0" layoutY="440.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Oldtown">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="119.0" layoutY="497.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Three Towers">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Oldtown" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="119.0" layoutY="497.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Three Towers">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="96.0" layoutY="467.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Blackcrown">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Three Towers" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="96.0" layoutY="467.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Blackcrown">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="205.0" layoutY="563.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sunflower Hall">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Blackcrown" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="205.0" layoutY="563.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Sunflower Hall">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="83.0" layoutY="603.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Starfish Harbour">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Sunflower Hall" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="83.0" layoutY="603.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Starfish Harbour">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="67.0" layoutY="582.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ryamsport">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Starfish Harbour" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="67.0" layoutY="582.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Ryamsport">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button focusTraversable="false" layoutX="46.0" layoutY="563.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Vinetown">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Ryamsport" />
+         </tooltip></Button>
+            <Button focusTraversable="false" layoutX="46.0" layoutY="563.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Vinetown">
          <font>
             <Font size="9.0" />
-         </font></Button>
-            <Button layoutX="611.0" layoutY="264.0" mnemonicParsing="false" onAction="#selectSettlement" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Summerhall">
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Vinetown" />
+         </tooltip></Button>
+            <Button layoutX="611.0" layoutY="264.0" mnemonicParsing="false" onAction="#selectLocation" prefHeight="7.0" prefWidth="7.0" styleClass="button-transparent" text="Summerhall">
          <font>
             <Font size="9.0" />
-         </font></Button>
+	 </font>
+ 	 <tooltip>
+            <Tooltip text="Summerhall" />
+         </tooltip></Button>
       </Pane>
    <Pane>
       <children>
-            <VBox fx:id="menuPane" layoutX="1.0" layoutY="3.0" prefHeight="617.0" prefWidth="250.0">
+            <VBox fx:id="menuPane" layoutX="1.0" layoutY="3.0" prefHeight="617.0" prefWidth="250.0" visible="false">
                <Label text="Starting Point:" />
                <TextField fx:id="startField" onMouseClicked="#selectField">
                   <VBox.margin>
@@ -337,7 +530,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Label>
-            <ListView fx:id="waypointsView" prefHeight="200.0" prefWidth="200.0">
+            <ListView fx:id="waypointsView" prefHeight="210.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -360,21 +553,21 @@
                <Insets left="10.0" right="10.0" top="20.0" />
             </padding>
          </VBox>
-         <VBox fx:id="settingsPane" layoutX="1.0" layoutY="3.0" prefHeight="617.0" prefWidth="250.0" visible="false">
+         <VBox fx:id="settingsPane" layoutX="1.0" layoutY="3.0" prefHeight="617.0" prefWidth="250.0">
             <padding>
                <Insets left="10.0" right="10.0" top="20.0" />
             </padding>
             <children>
                <Label text="Add Exclusions:" />
-               <ListView prefHeight="150.0" prefWidth="230.0">
+               <ListView fx:id="exclusionsView" prefHeight="140.0" prefWidth="230.0">
                   <VBox.margin>
                      <Insets bottom="5.0" />
                   </VBox.margin>
                </ListView>
                <HBox prefWidth="230.0">
                   <children>
-                     <TextField prefWidth="150.0" promptText="Settlement..." />
-                     <Button mnemonicParsing="false" text="Add">
+                     <TextField fx:id="exclusionField" onMouseClicked="#selectField" prefWidth="150.0" promptText="Settlement..." />
+                     <Button mnemonicParsing="false" onAction="#addExclusion" text="Add">
                         <HBox.margin>
                            <Insets left="15.0" />
                         </HBox.margin>
@@ -387,8 +580,8 @@
                <Label layoutX="20.0" layoutY="30.0" text="Add Settlement:" />
                <HBox layoutX="20.0" layoutY="197.0" prefWidth="230.0">
                   <children>
-                     <TextField prefWidth="150.0" promptText="Placename..." />
-                     <Button mnemonicParsing="false" text="Add">
+                     <TextField fx:id="addSettlementName" prefWidth="150.0" promptText="Placename..." />
+                     <Button mnemonicParsing="false" onAction="#addRoute" text="Add">
                         <HBox.margin>
                            <Insets left="15.0" />
                         </HBox.margin>
@@ -401,8 +594,8 @@
                <HBox />
                <HBox prefWidth="200.0">
                   <children>
-                     <TextField prefHeight="25.0" prefWidth="70.0" promptText="X Position" />
-                     <TextField prefHeight="25.0" prefWidth="70.0" promptText="Y Position">
+                     <TextField fx:id="addSettlementXPos" onMouseClicked="#selectField" prefHeight="25.0" prefWidth="70.0" promptText="X Position" />
+                     <TextField fx:id="addSettlementYPos" onMouseClicked="#selectField" prefHeight="25.0" prefWidth="70.0" promptText="Y Position">
                         <HBox.margin>
                            <Insets left="10.0" />
                         </HBox.margin>
@@ -417,12 +610,12 @@
                   <children>
                      <VBox prefWidth="150.0">
                         <children>
-                           <TextField prefWidth="150.0" promptText="Startpoint...">
+                           <TextField onMouseClicked="#selectField" prefWidth="150.0" promptText="Startpoint...">
                               <VBox.margin>
                                  <Insets bottom="2.0" />
                               </VBox.margin>
                            </TextField>
-                           <TextField layoutX="10.0" layoutY="10.0" prefWidth="150.0" promptText="Endpoint...">
+                           <TextField layoutX="10.0" layoutY="10.0" onMouseClicked="#selectField" prefWidth="150.0" promptText="Endpoint...">
                               <VBox.margin>
                                  <Insets bottom="2.0" />
                               </VBox.margin>
@@ -479,6 +672,15 @@
                </ImageView>
             </graphic>
          </ToggleButton>
+         <Button layoutX="137.0" layoutY="620.0" mnemonicParsing="false" onAction="#saveMapData" prefHeight="25.0" prefWidth="32.0">
+            <graphic>
+               <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/save.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
       </children>
    </Pane>
 </HBox>

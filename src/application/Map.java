@@ -9,11 +9,11 @@ public class Map {
 	private static Route[][] routes;
 	private static String routePriority;
 
-	private static LinkedList<Settlement> waypoints;
+	private static LinkedList<Settlement> waypoints = new LinkedList<>();
+	private static LinkedList<Settlement> exclusions = new LinkedList<>();
 
 	public static void initMap(int size){
 		matrix = new AdjacencyMatrix(size);
-		waypoints = new LinkedList<>();
 	}
 
 	public static void addSettlement(Settlement settlement){
@@ -53,5 +53,13 @@ public class Map {
 
 	public static LinkedList<Settlement> getWaypoints() {
 		return waypoints;
+	}
+
+	public static void addExclusion(Settlement settlement){
+		exclusions.add(settlement);
+	}
+
+	public static LinkedList<Settlement> getExclusions() {
+		return exclusions;
 	}
 }
