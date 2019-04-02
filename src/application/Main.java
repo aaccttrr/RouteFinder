@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
 
 public class Main extends Application {
 
@@ -17,6 +19,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setScene(scene);
+        primaryStage.getIcons().add(new Image("file:src/images/mike.jpg"));
         primaryStage.setResizable(false);
         primaryStage.sizeToScene();
         primaryStage.show();

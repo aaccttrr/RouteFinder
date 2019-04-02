@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -15,7 +16,7 @@ import java.util.LinkedList;
 
 public class Controller {
 
-	private TextField waitingForMapClick;
+	@FXML Pane mapPane;
 	@FXML TextField startField, destField, maxRoutesText, waypointField,
 			exclusionField, addSettlementName, addSettlementXPos, addSettlementYPos;
 	@FXML VBox menuPane, settingsPane;
@@ -23,26 +24,34 @@ public class Controller {
 	@FXML RadioButton radioShortest, radioEasiest, radioSafest;
 	@FXML ToggleGroup priorityGroup;
 	@FXML ListView waypointsView, exclusionsView;
-
-	@FXML
-	Pane tempId;
+	private TextField waitingForMapClick;
 
 	@FXML
 	private void selectLocation(Event e){
-		if(waitingForMapClick.equals(addSettlementXPos) || waitingForMapClick.equals(addSettlementYPos)){
-			if(e instanceof MouseEvent){
-				addSettlementXPos.setText(String.valueOf(((MouseEvent)e).getX()));
-				addSettlementYPos.setText(String.valueOf(((MouseEvent)e).getY()));
-			}
-			else{
-				addSettlementXPos.setText("Already");
-				addSettlementYPos.setText("Occupied!");
-			}
-		}
-		else{
-			if(e instanceof ActionEvent){
-				String placename = ((Button) e.getSource()).getText();
-				if (waitingForMapClick != null && waitingForMapClick.isFocused()) waitingForMapClick.setText(placename);
+		if(waitingForMapClick!=null) {
+			if (waitingForMapClick.equals(addSettlementXPos) || waitingForMapClick.equals(addSettlementYPos)) {
+				if (e instanceof MouseEvent) {
+					addSettlementXPos.setText(String.valueOf(((MouseEvent) e).getX()));
+					addSettlementYPos.setText(String.valueOf(((MouseEvent) e).getY()));
+				} else {
+					addSettlementXPos.setText("Already");
+					addSettlementYPos.setText("Occupied!");
+				}
+			} else {
+				if (e instanceof ActionEvent) {
+					String placename = ((Button) e.getSource()).getText();
+					if (waitingForMapClick != null && waitingForMapClick.isFocused()) {
+						if(waitingForMapClick.equals(startField)){
+							waitingForMapClick.setText((destField.getText().equals(placename))? "Invalid Route!" : placename);
+						}
+						else if(waitingForMapClick.equals(destField)){
+							waitingForMapClick.setText((startField.getText().equals(placename))? "Invalid Route!" : placename);
+						}
+						else{
+							waitingForMapClick.setText(placename);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -178,5 +187,28 @@ public class Controller {
 	private void toggleView(){
 		menuPane.setVisible(!menuPane.isVisible());
 		settingsPane.setVisible(!settingsPane.isVisible());
+	}
+
+	private void updateSettlements(){
+		Settlement[] settlements = Map.getSettlements();
+		ObservableList<Node> children = mapPane.getChildren();
+		for(Settlement s:settlements){
+			Button b = new Button(s.getPlacename());
+			b.setLayoutX(s.getXPos()-8);
+			b.setLayoutY(s.getYPos()-7);
+			b.setPrefWidth(10);
+			b.setPrefHeight(10);
+			b.setTooltip(new Tooltip(s.getPlacename()));
+			b.getStyleClass().add("button-transparent");
+			b.setOnAction(this::selectLocation);
+			b.setFocusTraversable(false);
+			children.add(b);
+		}
+		children.get(children.size()-1).setFocusTraversable(true);
+	}
+
+	@FXML
+	private void initialize(){
+		updateSettlements();
 	}
 }

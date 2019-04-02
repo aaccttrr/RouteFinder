@@ -1,4 +1,5 @@
 .button-transparent{
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-font-size: 9px;
 }

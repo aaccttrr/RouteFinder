@@ -11,7 +11,10 @@ public class GraphNode<T> {
 	public GraphNode(T data, AdjacencyMatrix matrix){
 		this.data = data;
 		this.matrix = matrix;
-		matrix.getNodes()[nodeId=matrix.getNodeCount()]=this;
+		if((nodeId=matrix.getNodeCount())>Math.sqrt(matrix.getMatrix().length)){
+			matrix.increaseSize();
+		}
+		matrix.getNodes()[nodeId]=this;
 		matrix.setNodeCount(matrix.getNodeCount()+1);
 	}
 

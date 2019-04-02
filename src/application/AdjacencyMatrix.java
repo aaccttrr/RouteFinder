@@ -18,6 +18,15 @@ public class AdjacencyMatrix {
 		return new GraphNode<>(data,this);
 	}
 
+	public void increaseSize(){
+		int newSize = (int) Math.sqrt(matrix.length);
+		Route[][] newMatrix = new Route[newSize][newSize];
+		for(int i=0;i<newSize-1;i++){
+			newMatrix[i] = matrix[i];
+		}
+		matrix = newMatrix;
+	}
+
 	public GraphNode<?>[] getNodes() {
 		return nodes;
 	}
