@@ -15,11 +15,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
       <Pane fx:id="mapPane" prefWidth="1000.0">
             <ImageView fitHeight="1000.0" fitWidth="1000.0" onMouseClicked="#selectLocation" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../images/map.png" />
             </ImageView>
+      <Pane fx:id="routePane" prefHeight="667.0" prefWidth="1000.0" />
+      <Pane fx:id="settlementPane" prefHeight="667.0" prefWidth="1000.0" />
       </Pane>
    <Pane>
       <children>
@@ -160,50 +162,45 @@
                   <children>
                      <VBox prefWidth="150.0">
                         <children>
-                           <TextField onMouseClicked="#selectField" prefWidth="150.0" promptText="Startpoint...">
+                           <TextField fx:id="addRouteStart" onMouseClicked="#selectField" prefWidth="150.0" promptText="Startpoint...">
                               <VBox.margin>
                                  <Insets bottom="2.0" />
                               </VBox.margin>
                            </TextField>
-                           <TextField layoutX="10.0" layoutY="10.0" onMouseClicked="#selectField" prefWidth="150.0" promptText="Endpoint...">
+                           <TextField fx:id="addRouteEnd" layoutX="10.0" layoutY="10.0" onMouseClicked="#selectField" prefWidth="150.0" promptText="Endpoint...">
                               <VBox.margin>
                                  <Insets bottom="2.0" />
                               </VBox.margin>
                            </TextField>
-                           <TextField layoutX="10.0" layoutY="35.0" prefWidth="150.0" promptText="Distance...">
+                           <TextField fx:id="addRouteDist" layoutX="10.0" layoutY="35.0" prefWidth="150.0" promptText="Distance (km)...">
                               <VBox.margin>
                                  <Insets bottom="2.0" />
                               </VBox.margin>
                            </TextField>
-                           <TextField layoutX="10.0" layoutY="60.0" prefWidth="150.0" promptText="Difficulty...">
-                              <VBox.margin>
-                                 <Insets bottom="2.0" />
-                              </VBox.margin>
-                           </TextField>
-                           <TextField layoutX="10.0" layoutY="85.0" prefWidth="150.0" promptText="Danger...">
-                              <VBox.margin>
-                                 <Insets bottom="10.0" />
-                              </VBox.margin></TextField>
+                           <Label text="Difficulty:" />
+                           <Slider fx:id="addRouteDiff" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickMarks="true" snapToTicks="true" />
+                           <Label layoutX="10.0" layoutY="91.0" text="Danger:" />
+                           <Slider fx:id="addRouteDanger" blockIncrement="1.0" layoutX="10.0" layoutY="91.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickMarks="true" snapToTicks="true" />
                         </children>
                      </VBox>
-                     <Button mnemonicParsing="false" text="Add">
+                     <Button mnemonicParsing="false" onAction="#addRoute" text="Add">
                         <HBox.margin>
                            <Insets left="15.0" />
                         </HBox.margin>
                      </Button>
                   </children>
                </HBox>
-               <HBox fx:id="routeWarningBox">
+               <HBox fx:id="routeWarningBox" visible="false">
                   <children>
                      <Label prefHeight="59.0" prefWidth="141.0" text="Route already exists!          Would you like to update it?" wrapText="true" />
                      <VBox>
                         <children>
-                           <Button mnemonicParsing="false" text="Update">
+                           <Button fx:id="updateRoute" mnemonicParsing="false" onAction="#addRoute" text="Update">
                               <VBox.margin>
                                  <Insets bottom="5.0" />
                               </VBox.margin>
                            </Button>
-                           <Button mnemonicParsing="false" prefWidth="55.0" text="Cancel" />
+                           <Button mnemonicParsing="false" onAction="#closeWarning" prefWidth="55.0" text="Cancel" />
                         </children>
                         <HBox.margin>
                            <Insets left="10.0" />

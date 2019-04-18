@@ -1,29 +1,33 @@
 package application;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Controller {
 
-	@FXML Pane mapPane;
+	@FXML Pane settlementPane, routePane;
 	@FXML TextField startField, destField, maxRoutesText, waypointField,
-			exclusionField, addSettlementName, addSettlementXPos, addSettlementYPos;
+			exclusionField, addSettlementName, addSettlementXPos, addSettlementYPos,
+			addRouteStart, addRouteEnd, addRouteDist;
 	@FXML VBox menuPane, settingsPane;
-	@FXML Slider maxRoutesSlider;
+	@FXML Slider maxRoutesSlider, addRouteDiff, addRouteDanger;
 	@FXML RadioButton radioShortest, radioEasiest, radioSafest;
 	@FXML ToggleGroup priorityGroup;
 	@FXML ListView waypointsView, exclusionsView;
+	@FXML HBox routeWarningBox;
+	@FXML Button updateRoute;
 	private TextField waitingForMapClick;
 
 	@FXML
@@ -170,17 +174,54 @@ public class Controller {
 	}
 
 	@FXML
-	private void addRoute(){
-		InputOutput.readSettlements();
-		Settlement[] settlements = Map.getSettlements();
-		for(Settlement s:settlements){
-			System.out.println(s.getPlacename());
+	private void addRoute(ActionEvent e){
+		Settlement start = Map.lookupSettlement(addRouteStart.getText());
+		Settlement end = Map.lookupSettlement(addRouteEnd.getText());
+		if(start==null) {
+			addRouteStart.setText("Settlement Not Found!");
+			return;
 		}
+		if(end==null){
+			addRouteEnd.setText("Settlement Not Found!");
+			return;
+		}
+		if(start==end){
+			addRouteStart.setText("Start and End Cannot");
+			addRouteEnd.setText("Be The Same!");
+		}
+		try{
+			double distance = Double.parseDouble(addRouteDist.getText());
+			int difficulty = (int) addRouteDiff.getValue();
+			int danger = (int) addRouteDanger.getValue();
+			if(Map.routeExists(start, end)){
+				if(e.getSource()==updateRoute){
+					Map.addRoute(start, end, distance, difficulty, danger);
+					closeWarning();
+					showRoutes();
+				}
+				else {
+					routeWarningBox.setVisible(true);
+				}
+			}
+			else{
+				Map.addRoute(start, end, distance, difficulty, danger);
+				showRoutes();
+			}
+		}
+		catch (Exception ex){
+			addRouteDist.setText("Invalid Distance!");
+		}
+	}
+
+	@FXML
+	private void closeWarning(){
+		routeWarningBox.setVisible(false);
 	}
 
 	@FXML
 	private void saveMapData(){
 		InputOutput.writeSettlements();
+		InputOutput.writeRoutes();
 	}
 
 	@FXML
@@ -189,9 +230,8 @@ public class Controller {
 		settingsPane.setVisible(!settingsPane.isVisible());
 	}
 
-	private void updateSettlements(){
+	private void showSettlements(){
 		Settlement[] settlements = Map.getSettlements();
-		ObservableList<Node> children = mapPane.getChildren();
 		for(Settlement s:settlements){
 			Button b = new Button(s.getPlacename());
 			b.setLayoutX(s.getXPos()-8);
@@ -202,13 +242,37 @@ public class Controller {
 			b.getStyleClass().add("button-transparent");
 			b.setOnAction(this::selectLocation);
 			b.setFocusTraversable(false);
-			children.add(b);
+			settlementPane.getChildren().add(b);
 		}
-		children.get(children.size()-1).setFocusTraversable(true);
+	}
+
+	private void showRoutes(){
+		Object[][] routes = Map.getRoutes();
+		for(Object[] r:routes){
+			drawRoute((Settlement)r[0],(Settlement)r[1]);
+		}
+	}
+
+	private void drawRoute(Settlement start, Settlement end){
+		List<Node> settlementButtons = settlementPane.getChildren();
+		Button startButton=null;
+		Button endButton=null;
+		for(Node b:settlementButtons){
+			if(start.getPlacename().equals(((Button)b).getText())){
+				startButton = (Button) b;
+			}
+			else if(end.getPlacename().equals(((Button)b).getText())){
+				endButton = (Button) b;
+			}
+		}
+		Line line = new Line(startButton.getLayoutX()+8,startButton.getLayoutY()+8,endButton.getLayoutX()+8,endButton.getLayoutY()+8);
+		line.setStrokeWidth(3);
+		routePane.getChildren().add(line);
 	}
 
 	@FXML
 	private void initialize(){
-		updateSettlements();
+		showSettlements();
+		showRoutes();
 	}
 }

@@ -12,14 +12,14 @@ public class GraphNode<T> {
 		this.data = data;
 		this.matrix = matrix;
 		if((nodeId=matrix.getNodeCount())>Math.sqrt(matrix.getMatrix().length)){
-			matrix.increaseSize();
+//			matrix.increaseSize();
 		}
 		matrix.getNodes()[nodeId]=this;
 		matrix.setNodeCount(matrix.getNodeCount()+1);
 	}
 
-	public void connectToNode(GraphNode<T> destNode, int dist, int diff, int danger){
-		matrix.getMatrix()[nodeId][destNode.nodeId]=matrix.getMatrix()[destNode.nodeId][nodeId]=new Route(dist,diff,danger);
+	public void connectToNode(GraphNode<T> destNode, double dist, int diff, int danger){
+		matrix.getMatrix()[nodeId][destNode.nodeId] = matrix.getMatrix()[destNode.nodeId][nodeId] = new Route(dist, diff, danger);
 	}
 
 	public GraphNode[] getConnections(){
@@ -37,5 +37,9 @@ public class GraphNode<T> {
 
 	public T getData(){
 		return data;
+	}
+
+	public int getNodeId(){
+		return nodeId;
 	}
 }

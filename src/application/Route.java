@@ -2,11 +2,11 @@ package application;
 
 public class Route {
 
-	private int distance; //km
+	private double distance; //km
 	private int difficulty; //1-10
 	private int danger; //1-10
 
-	public Route(int dist, int diff, int danger){
+	public Route(double dist, int diff, int danger){
 		distance=dist;
 		difficulty=diff;
 		this.danger=danger;
@@ -20,7 +20,7 @@ public class Route {
 		return danger;
 	}
 
-	public int getDistance() {
+	public double getDistance() {
 		return distance;
 	}
 

@@ -1,6 +1,7 @@
 package application;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class AdjacencyMatrix {
 
@@ -19,12 +20,13 @@ public class AdjacencyMatrix {
 	}
 
 	public void increaseSize(){
-		int newSize = (int) Math.sqrt(matrix.length);
-		Route[][] newMatrix = new Route[newSize][newSize];
-		for(int i=0;i<newSize-1;i++){
-			newMatrix[i] = matrix[i];
-		}
-		matrix = newMatrix;
+		GraphNode<?>[] newNodes = Arrays.copyOf(nodes, nodes.length+1);
+		Route[][] newMatrix = Arrays.copyOf(matrix, matrix.length+1);
+	}
+
+	public GraphNode<?> lookupNodeByData(Object data){
+		for(GraphNode<?> node : nodes) if(node.getData().equals(data)) return node;
+		return null;
 	}
 
 	public GraphNode<?>[] getNodes() {
