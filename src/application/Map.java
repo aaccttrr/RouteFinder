@@ -145,7 +145,7 @@ public class Map {
 					return path.toArray(new Settlement[0]);
 				}
 				else {
-					encountered.clear(); //clear lists for new paths
+					encountered = new ArrayList<>(exclusions); //clear lists for new paths
 					unencountered.clear();
 					encountered.add(waypoint);
 					waypoints.remove(waypoint); //remove waypoint from checklist

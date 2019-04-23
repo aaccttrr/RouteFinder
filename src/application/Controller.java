@@ -153,17 +153,19 @@ public class Controller {
 			String placename = waypointField.getText();
 			GraphNode<Settlement> node = Map.lookupNode(placename);
 			if (node == null) {
-				waypointField.setText("Settlement Not Found!");
+				waypointField.setText("Not a Settlement!");
 			} else {
-				ArrayList<GraphNode<Settlement>> list = Map.getWaypoints();
-				if(!list.contains(node)) {
+				if(!(Map.getWaypoints().contains(node) || Map.getExclusions().contains(node))) {
 					Map.addWaypoint(node);
 					waypointsView.setItems(FXCollections.observableList(Map.getWaypoints()));
 					removeWaypointButton.setDisable(false);
 					waypointField.clear();
 				}
-				else{
+				else if(Map.getWaypoints().contains(node)){
 					waypointField.setText("Waypoint Exists!");
+				}
+				else{
+					waypointField.setText("Exclusion!");
 				}
 			}
 		}
@@ -178,17 +180,19 @@ public class Controller {
 			String placename = exclusionField.getText();
 			GraphNode<Settlement> node = Map.lookupNode(placename);
 			if (node == null) {
-				exclusionField.setText("Settlement Not Found!");
+				exclusionField.setText("Not a Settlement!");
 			} else {
-				ArrayList<GraphNode<Settlement>> list = Map.getExclusions();
-				if(!list.contains(node)) {
+				if(!(Map.getExclusions().contains(node) || Map.getWaypoints().contains(node))) {
 					Map.addExclusion(node);
 					exclusionsView.setItems(FXCollections.observableList(Map.getExclusions()));
 					removeExclusionButton.setDisable(false);
 					exclusionField.clear();
 				}
-				else{
+				else if(Map.getExclusions().contains(node)){
 					exclusionField.setText("Exclusion Exists!");
+				}
+				else{
+					exclusionField.setText("Waypoint!");
 				}
 			}
 		}
