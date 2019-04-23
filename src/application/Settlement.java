@@ -1,14 +1,11 @@
 package application;
 
-import java.util.ArrayList;
 
 public class Settlement {
 
 	private String placename;
 
 	private double XPos, YPos;
-
-	private ArrayList<Route> routes;
 
 	public Settlement(String name, double x, double y){
 		placename=name;
@@ -20,9 +17,6 @@ public class Settlement {
 		return placename;
 	}
 
-	public Route[] getRoutes(){
-		return (Route[]) routes.toArray();
-	}
 	public double getXPos() {
 		return XPos;
 	}

@@ -1,13 +1,14 @@
 package application;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class InputOutput {
 
 	public static void readSettlements(){
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("src/settlements.csv"));
+			BufferedReader br = new BufferedReader(new FileReader("src/data/settlements.csv"));
 			String line;
 			LinkedList<Settlement> settlements = new LinkedList<>();
 			br.readLine();
@@ -26,7 +27,7 @@ public class InputOutput {
 	}
 
 	public static void writeSettlements(){
-		try(PrintWriter pw = new PrintWriter(new File("src/settlements.csv"))){
+		try(PrintWriter pw = new PrintWriter(new File("src/data/settlements.csv"))){
 			Settlement[] settlements = Map.getSettlements();
 			StringBuilder sb = new StringBuilder();
 			sb.append("placename,");
@@ -49,21 +50,22 @@ public class InputOutput {
 
 	public static void readRoutes(){
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("src/routes.csv"));
+			BufferedReader br = new BufferedReader(new FileReader("src/data/routes.csv"));
 			String line;
 			br.readLine();
 			while ((line = br.readLine()) != null){
 				String[] data = line.split(",");
 				Map.addRoute(Map.lookupSettlement(data[0]), Map.lookupSettlement(data[1]),
-						Double.parseDouble(data[2]),Integer.parseInt(data[3]),Integer.parseInt(data[4]));
+						Integer.parseInt(data[2]),Integer.parseInt(data[3]),Integer.parseInt(data[4]));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		readExclusions();
 	}
 
 	public static void writeRoutes(){
-		try(PrintWriter pw = new PrintWriter(new File("src/routes.csv"))){
+		try(PrintWriter pw = new PrintWriter(new File("src/data/routes.csv"))){
 			Object[][] routes = Map.getRoutes();
 			StringBuilder sb = new StringBuilder();
 			sb.append("start,");
@@ -82,6 +84,36 @@ public class InputOutput {
 				sb.append(((Route)r[2]).getDifficulty());
 				sb.append(',');
 				sb.append(((Route)r[2]).getDanger());
+				sb.append('\n');
+			}
+			pw.write(sb.toString());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void readExclusions(){
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("src/data/exclusions.csv"));
+			String line;
+			br.readLine();
+			while ((line = br.readLine()) != null){
+				String[] data = line.split(",");
+				Map.addExclusion(Map.lookupNode(data[0]));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void writeExclusions(){
+		try(PrintWriter pw = new PrintWriter(new File("src/data/exclusions.csv"))){
+			ArrayList<GraphNode<Settlement>> exclusions = Map.getExclusions();
+			StringBuilder sb = new StringBuilder();
+			sb.append("placename");
+			sb.append('\n');
+			for(GraphNode<Settlement> n:exclusions){
+				sb.append(n.toString());
 				sb.append('\n');
 			}
 			pw.write(sb.toString());

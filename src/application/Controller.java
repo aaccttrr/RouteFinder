@@ -10,50 +10,40 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
 
-	@FXML Pane settlementPane, routePane;
+	@FXML Pane mapPane;
 	@FXML TextField startField, destField, maxRoutesText, waypointField,
 			exclusionField, addSettlementName, addSettlementXPos, addSettlementYPos,
 			addRouteStart, addRouteEnd, addRouteDist;
 	@FXML VBox menuPane, settingsPane;
 	@FXML Slider maxRoutesSlider, addRouteDiff, addRouteDanger;
-	@FXML RadioButton radioShortest, radioEasiest, radioSafest;
 	@FXML ToggleGroup priorityGroup;
 	@FXML ListView waypointsView, exclusionsView;
 	@FXML HBox routeWarningBox;
-	@FXML Button updateRoute;
+	@FXML Button updateRoute, removeWaypointButton, removeExclusionButton;
+	@FXML ToggleButton showRoutesButton;
 	private TextField waitingForMapClick;
 
+
 	@FXML
-	private void selectLocation(Event e){
+	private void selectLocation(Event e){ //allows for selection of settlement buttons or map coordinates
 		if(waitingForMapClick!=null) {
 			if (waitingForMapClick.equals(addSettlementXPos) || waitingForMapClick.equals(addSettlementYPos)) {
-				if (e instanceof MouseEvent) {
-					addSettlementXPos.setText(String.valueOf(((MouseEvent) e).getX()));
-					addSettlementYPos.setText(String.valueOf(((MouseEvent) e).getY()));
-				} else {
-					addSettlementXPos.setText("Already");
-					addSettlementYPos.setText("Occupied!");
-				}
+				addSettlementXPos.setText(String.valueOf(((MouseEvent) e).getX()));
+				addSettlementYPos.setText(String.valueOf(((MouseEvent) e).getY()));
 			} else {
 				if (e instanceof ActionEvent) {
 					String placename = ((Button) e.getSource()).getText();
 					if (waitingForMapClick != null && waitingForMapClick.isFocused()) {
-						if(waitingForMapClick.equals(startField)){
-							waitingForMapClick.setText((destField.getText().equals(placename))? "Invalid Route!" : placename);
-						}
-						else if(waitingForMapClick.equals(destField)){
-							waitingForMapClick.setText((startField.getText().equals(placename))? "Invalid Route!" : placename);
-						}
-						else{
-							waitingForMapClick.setText(placename);
-						}
+						waitingForMapClick.setText(placename);
 					}
 				}
 			}
@@ -67,20 +57,72 @@ public class Controller {
 
 	@FXML
 	private void findRoute(){
-
+		List<Node> children = mapPane.getChildren();
+		int i=0;
+		while(children.get(i) instanceof Line){ //clear previous route lines
+			while(children.get(i) instanceof Line &&
+					((Line) children.get(i)).getStroke().equals(Color.BLACK)){
+				children.remove(i);
+			}
+			i++;
+		}
+		if(startField.getText().equals(destField.getText())){ //prevent routes between same settlement
+			destField.setText("Invalid Route!");
+			return;
+		}
+		GraphNode<Settlement> start = Map.lookupNode(startField.getText());
+		Settlement end = Map.lookupSettlement(destField.getText());
+		if(start==null){
+			startField.setText("Settlement Not Found!");
+			return;
+		}
+		if(end==null){
+			destField.setText("Settlement Not Found!");
+			return;
+		}
+		if(((RadioButton)priorityGroup.getSelectedToggle()).getText().equals("Any Valid Route")){
+			List<List<GraphNode<Settlement>>> paths = Map.findValidPaths(start, end);
+			if(paths==null || paths.size()==0){
+				startField.setText("No Route Found!");
+				destField.setText("");
+				return;
+			}
+			for(List<GraphNode<Settlement>> path:paths) {
+				for (i=0;i<path.size()-1;i++) {
+					Object[] routeInfo = {path.get(i).getData(), path.get(i+1).getData(),
+							Map.getRoute(path.get(i).getData(), path.get(i + 1).getData())};  //route info for drawing routes {startPoint, endPoint, routeObject}
+					drawRoute(routeInfo, Color.BLACK);
+				}
+			}
+		}
+		else {
+			Settlement[] path = Map.findCheapestPath(start, end);
+			if (path==null) {
+				startField.setText("No Route Found!");
+				destField.setText("");
+				return;
+			}
+			for (i=0;i<path.length-1;i++) {
+				Object[] routeInfo = {path[i], path[i + 1], Map.getRoute(path[i], path[i + 1])};
+				drawRoute(routeInfo, Color.BLACK);
+			}
+		}
 	}
 
 	@FXML
-	private void updateMaxRoutes(Event e){
+	private void updateMaxRoutes(Event e){ //update maximum routes to be found by findValidPaths()
 		int maxRoutes;
 		if(e.getSource()==maxRoutesSlider){
 			maxRoutes= (int) maxRoutesSlider.getValue();
 			maxRoutesText.setText(Integer.toString(maxRoutes));
+			Map.setMaxValidPaths(maxRoutes);
 		}
 		else{
 			try {
 				maxRoutes = Integer.parseInt(maxRoutesText.getText());
+				if(maxRoutes<maxRoutesSlider.getMin() || maxRoutes>maxRoutesSlider.getMax()) throw new Exception();
 				maxRoutesSlider.setValue(maxRoutes);
+				Map.setMaxValidPaths(maxRoutes);
 			}
 			catch (Exception ex){
 				maxRoutesText.setText("!");
@@ -89,10 +131,12 @@ public class Controller {
 	}
 
 	@FXML
-	private void updateRoutePriority(){
+	private void updateRoutePriority(){ //update route priority, i.e. type of route weight, to be used by findCheapestPath()
 		String buttonPriority = ((RadioButton)priorityGroup.getSelectedToggle()).getText();
 		String priority="";
 		switch (buttonPriority){
+			case "Any Valid Route": priority="valid";
+			break;
 			case "Shortest Route": priority="distance";
 			break;
 			case "Easiest Route": priority="difficulty";
@@ -107,18 +151,19 @@ public class Controller {
 	private void addWaypoint(){
 		try {
 			String placename = waypointField.getText();
-			Settlement settlement = Map.lookupSettlement(placename);
-			if (settlement == null) {
+			GraphNode<Settlement> node = Map.lookupNode(placename);
+			if (node == null) {
 				waypointField.setText("Settlement Not Found!");
 			} else {
-				LinkedList<Settlement> list = Map.getWaypoints();
-				if(!list.contains(settlement)) {
-					Map.addWaypoint(settlement);
-					waypointsView.setItems(FXCollections.observableList(list));
+				ArrayList<GraphNode<Settlement>> list = Map.getWaypoints();
+				if(!list.contains(node)) {
+					Map.addWaypoint(node);
+					waypointsView.setItems(FXCollections.observableList(Map.getWaypoints()));
+					removeWaypointButton.setDisable(false);
 					waypointField.clear();
 				}
 				else{
-					waypointField.setText("Waypoint Already Exists!");
+					waypointField.setText("Waypoint Exists!");
 				}
 			}
 		}
@@ -131,23 +176,44 @@ public class Controller {
 	private void addExclusion(){
 		try {
 			String placename = exclusionField.getText();
-			Settlement settlement = Map.lookupSettlement(placename);
-			if (settlement == null) {
+			GraphNode<Settlement> node = Map.lookupNode(placename);
+			if (node == null) {
 				exclusionField.setText("Settlement Not Found!");
 			} else {
-				LinkedList<Settlement> list = Map.getExclusions();
-				if(!list.contains(settlement)) {
-					Map.addExclusion(settlement);
-					exclusionsView.setItems(FXCollections.observableList(list));
+				ArrayList<GraphNode<Settlement>> list = Map.getExclusions();
+				if(!list.contains(node)) {
+					Map.addExclusion(node);
+					exclusionsView.setItems(FXCollections.observableList(Map.getExclusions()));
+					removeExclusionButton.setDisable(false);
 					exclusionField.clear();
 				}
 				else{
-					exclusionField.setText("Exclusion Already Exists!");
+					exclusionField.setText("Exclusion Exists!");
 				}
 			}
 		}
 		catch (Exception e){
 			exclusionField.requestFocus();
+		}
+	}
+
+	@FXML
+	private void removeWaypoint(){
+		GraphNode<Settlement> selected = (GraphNode<Settlement>) waypointsView.getSelectionModel().getSelectedItem();
+		if(selected!=null){
+			Map.removeWaypoint(selected);
+			waypointsView.setItems(FXCollections.observableList(Map.getWaypoints()));
+			if(waypointsView.getItems().size()==0) removeWaypointButton.setDisable(true);
+		}
+	}
+
+	@FXML
+	private void removeExclusion(){
+		GraphNode<Settlement> selected = (GraphNode<Settlement>) exclusionsView.getSelectionModel().getSelectedItem();
+		if(selected!=null){
+			Map.removeExclusion(selected);
+			exclusionsView.setItems(FXCollections.observableList(Map.getExclusions()));
+			if(exclusionsView.getItems().size()==0) removeExclusionButton.setDisable(true);
 		}
 	}
 
@@ -168,8 +234,19 @@ public class Controller {
 		catch (Exception e){
 			addSettlementYPos.setText("!");
 		}
+		for(Settlement s:Map.getSettlements()){ //check if location already has an existing settlement
+			if(s.getXPos()-10<XPos && s.getXPos()+10>XPos && s.getYPos()-10<YPos && s.getYPos()+10>YPos){
+				addSettlementXPos.setText("Already");
+				addSettlementYPos.setText("Occupied!");
+				return;
+			}
+		}
 		if(placename!=null && XPos!=-1 && YPos!=-1){
 			Map.addSettlement(new Settlement(placename, XPos, YPos));
+			showSettlements();
+			addSettlementName.setText("Added!");
+			addSettlementXPos.clear();
+			addSettlementYPos.clear();
 		}
 	}
 
@@ -185,15 +262,15 @@ public class Controller {
 			addRouteEnd.setText("Settlement Not Found!");
 			return;
 		}
-		if(start==end){
+		if(start.equals(end)){
 			addRouteStart.setText("Start and End Cannot");
 			addRouteEnd.setText("Be The Same!");
 		}
 		try{
-			double distance = Double.parseDouble(addRouteDist.getText());
+			int distance = Integer.parseInt(addRouteDist.getText());
 			int difficulty = (int) addRouteDiff.getValue();
 			int danger = (int) addRouteDanger.getValue();
-			if(Map.routeExists(start, end)){
+			if(Map.getRoute(start, end)!=null){ //check if route already exists between settlements
 				if(e.getSource()==updateRoute){
 					Map.addRoute(start, end, distance, difficulty, danger);
 					closeWarning();
@@ -205,7 +282,6 @@ public class Controller {
 			}
 			else{
 				Map.addRoute(start, end, distance, difficulty, danger);
-				showRoutes();
 			}
 		}
 		catch (Exception ex){
@@ -222,15 +298,37 @@ public class Controller {
 	private void saveMapData(){
 		InputOutput.writeSettlements();
 		InputOutput.writeRoutes();
+		InputOutput.writeExclusions();
 	}
 
 	@FXML
-	private void toggleView(){
+	private void toggleView(){ //toggle between menu and settings
 		menuPane.setVisible(!menuPane.isVisible());
 		settingsPane.setVisible(!settingsPane.isVisible());
 	}
 
-	private void showSettlements(){
+	@FXML
+	private void showRoutes(){ //show all routes on map
+		if(showRoutesButton.isSelected()) {
+			Object[][] routes = Map.getRoutes();
+			for (Object[] r : routes) {
+				drawRoute(r, new Color(0.5, 0.5, 0.5, 0.5));
+			}
+		}
+		else{
+			List<Node> children = mapPane.getChildren();
+			int i=0;
+			while(children.get(i) instanceof Line){
+				while(children.get(i) instanceof Line &&
+						((Line) children.get(i)).getStroke().equals(new Color(0.5, 0.5, 0.5, 0.5))){
+					children.remove(i);
+				}
+				i++;
+			}
+		}
+	}
+
+	private void showSettlements(){ //place buttons for all settlements
 		Settlement[] settlements = Map.getSettlements();
 		for(Settlement s:settlements){
 			Button b = new Button(s.getPlacename());
@@ -242,19 +340,15 @@ public class Controller {
 			b.getStyleClass().add("button-transparent");
 			b.setOnAction(this::selectLocation);
 			b.setFocusTraversable(false);
-			settlementPane.getChildren().add(b);
+			mapPane.getChildren().add(b);
 		}
 	}
 
-	private void showRoutes(){
-		Object[][] routes = Map.getRoutes();
-		for(Object[] r:routes){
-			drawRoute((Settlement)r[0],(Settlement)r[1]);
-		}
-	}
-
-	private void drawRoute(Settlement start, Settlement end){
-		List<Node> settlementButtons = settlementPane.getChildren();
+	private void drawRoute(Object[] routeInfo, Paint colour){ //draw route with routeInfo={start, end, routeObject} and colour
+		Settlement start = (Settlement) routeInfo[0];
+		Settlement end = (Settlement) routeInfo[1];
+		List<Node> children = mapPane.getChildren();
+		List<Node> settlementButtons = children.subList(children.size()-Map.getNumSettlements(),children.size());
 		Button startButton=null;
 		Button endButton=null;
 		for(Node b:settlementButtons){
@@ -265,14 +359,21 @@ public class Controller {
 				endButton = (Button) b;
 			}
 		}
-		Line line = new Line(startButton.getLayoutX()+8,startButton.getLayoutY()+8,endButton.getLayoutX()+8,endButton.getLayoutY()+8);
+		Line line = new Line(startButton.getLayoutX()+8,startButton.getLayoutY()+8,
+				endButton.getLayoutX()+8,endButton.getLayoutY()+8);
 		line.setStrokeWidth(3);
-		routePane.getChildren().add(line);
+		line.setStroke(colour);
+		Route r = (Route) routeInfo[2];
+		Tooltip t = new Tooltip("Distance: "+r.getDistance()+"km\nDifficulty: "+r.getDifficulty()+"\nDanger: "+r.getDanger());
+		Tooltip.install(line, t);
+		mapPane.getChildren().add(0,line);
 	}
 
 	@FXML
 	private void initialize(){
 		showSettlements();
-		showRoutes();
+		waitingForMapClick = startField;
+		exclusionsView.setItems(FXCollections.observableList(Map.getExclusions()));
+		if(exclusionsView.getItems().size()!=0) removeExclusionButton.setDisable(false);
 	}
 }

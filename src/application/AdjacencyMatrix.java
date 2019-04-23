@@ -19,9 +19,13 @@ public class AdjacencyMatrix {
 		return new GraphNode<>(data,this);
 	}
 
-	public void increaseSize(){
-		GraphNode<?>[] newNodes = Arrays.copyOf(nodes, nodes.length+1);
-		Route[][] newMatrix = Arrays.copyOf(matrix, matrix.length+1);
+	public void increaseSize(){ //increase matrix size as number of nodes increase
+		nodes = Arrays.copyOf(nodes, nodes.length+1);
+		Route[][] newMatrix = new Route[matrix.length+1][matrix.length+1];
+		for(int i=0;i<matrix.length;i++){
+			newMatrix[i] = Arrays.copyOf(matrix[i], matrix.length+1);
+		}
+		matrix = newMatrix;
 	}
 
 	public GraphNode<?> lookupNodeByData(Object data){

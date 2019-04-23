@@ -16,16 +16,15 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
-      <Pane fx:id="mapPane" prefWidth="1000.0">
-            <ImageView fitHeight="1000.0" fitWidth="1000.0" onMouseClicked="#selectLocation" pickOnBounds="true" preserveRatio="true">
+      <Pane prefWidth="1000.0">
+            <ImageView fitHeight="1000.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../images/map.png" />
             </ImageView>
-      <Pane fx:id="routePane" prefHeight="667.0" prefWidth="1000.0" />
-      <Pane fx:id="settlementPane" prefHeight="667.0" prefWidth="1000.0" />
+      <Pane fx:id="mapPane" onMouseClicked="#selectLocation" prefHeight="667.0" prefWidth="1000.0" />
       </Pane>
    <Pane>
       <children>
-            <VBox fx:id="menuPane" layoutX="1.0" layoutY="3.0" prefHeight="617.0" prefWidth="250.0" visible="false">
+            <VBox fx:id="menuPane" layoutX="1.0" layoutY="3.0" prefHeight="617.0" prefWidth="250.0">
                <Label text="Starting Point:" />
                <TextField fx:id="startField" onMouseClicked="#selectField">
                   <VBox.margin>
@@ -43,12 +42,20 @@
                      <Insets bottom="20.0" left="75.0" />
                   </VBox.margin>
                </Button>
+            <RadioButton mnemonicParsing="false" onAction="#updateRoutePriority" selected="true" text="Any Valid Route">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="priorityGroup" />
+               </toggleGroup>
+            </RadioButton>
             <Label text="Maximum Number of Routes:" />
             <HBox />
             <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="230.0">
                <children>
-                  <Slider fx:id="maxRoutesSlider" blockIncrement="5.0" onKeyPressed="#updateMaxRoutes" onMouseReleased="#updateMaxRoutes" value="50.0" />
-                  <TextField fx:id="maxRoutesText" onAction="#updateMaxRoutes" prefHeight="25.0" prefWidth="30.0" text="50" />
+                  <Slider fx:id="maxRoutesSlider" blockIncrement="5.0" max="50.0" min="1.0" onKeyPressed="#updateMaxRoutes" onMouseReleased="#updateMaxRoutes" value="25.0" />
+                  <TextField fx:id="maxRoutesText" onAction="#updateMaxRoutes" prefHeight="25.0" prefWidth="30.0" text="25" />
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" />
@@ -59,20 +66,17 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Label>
-            <RadioButton fx:id="radioShortest" mnemonicParsing="false" onAction="#updateRoutePriority" selected="true" text="Shortest Route">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="15.0" />
-               </VBox.margin>
-               <toggleGroup>
-                  <ToggleGroup fx:id="priorityGroup" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="radioEasiest" layoutX="20.0" layoutY="314.0" mnemonicParsing="false" onAction="#updateRoutePriority" text="Easiest Route" toggleGroup="$priorityGroup">
+            <RadioButton mnemonicParsing="false" onAction="#updateRoutePriority" text="Shortest Route" toggleGroup="$priorityGroup">
                <VBox.margin>
                   <Insets bottom="5.0" left="15.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton fx:id="radioSafest" layoutX="20.0" layoutY="331.0" mnemonicParsing="false" onAction="#updateRoutePriority" text="Safest Route" toggleGroup="$priorityGroup">
+            <RadioButton layoutX="20.0" layoutY="314.0" mnemonicParsing="false" onAction="#updateRoutePriority" text="Easiest Route" toggleGroup="$priorityGroup">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="15.0" />
+               </VBox.margin>
+            </RadioButton>
+            <RadioButton layoutX="20.0" layoutY="331.0" mnemonicParsing="false" onAction="#updateRoutePriority" text="Safest Route" toggleGroup="$priorityGroup">
                <VBox.margin>
                   <Insets bottom="10.0" left="15.0" />
                </VBox.margin>
@@ -89,14 +93,19 @@
             </ListView>
             <HBox prefHeight="43.0" prefWidth="230.0">
                <children>
-                  <TextField fx:id="waypointField" onMouseClicked="#selectField" promptText="Settlement...">
+                  <TextField fx:id="waypointField" onMouseClicked="#selectField" prefHeight="25.0" prefWidth="120.0" promptText="Settlement...">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </TextField>
                   <Button mnemonicParsing="false" onAction="#addWaypoint" text="Add">
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="6.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="removeWaypointButton" disable="true" layoutX="140.0" layoutY="10.0" mnemonicParsing="false" onAction="#removeWaypoint" prefHeight="25.0" prefWidth="59.0" text="Remove">
+                     <HBox.margin>
+                        <Insets left="7.0" />
                      </HBox.margin>
                   </Button>
                </children>
@@ -105,7 +114,7 @@
                <Insets left="10.0" right="10.0" top="20.0" />
             </padding>
          </VBox>
-         <VBox fx:id="settingsPane" layoutX="1.0" layoutY="3.0" prefHeight="617.0" prefWidth="250.0">
+         <VBox fx:id="settingsPane" layoutX="1.0" layoutY="3.0" prefHeight="617.0" prefWidth="250.0" visible="false">
             <padding>
                <Insets left="10.0" right="10.0" top="20.0" />
             </padding>
@@ -116,18 +125,24 @@
                      <Insets bottom="5.0" />
                   </VBox.margin>
                </ListView>
-               <HBox prefWidth="230.0">
+               <HBox prefHeight="43.0" prefWidth="230.0">
                   <children>
-                     <TextField fx:id="exclusionField" onMouseClicked="#selectField" prefWidth="150.0" promptText="Settlement..." />
+                     <TextField fx:id="exclusionField" onMouseClicked="#selectField" prefHeight="25.0" prefWidth="120.0" promptText="Settlement...">
+                        <HBox.margin>
+                           <Insets />
+                        </HBox.margin>
+                     </TextField>
                      <Button mnemonicParsing="false" onAction="#addExclusion" text="Add">
                         <HBox.margin>
-                           <Insets left="15.0" />
+                           <Insets left="6.0" />
+                        </HBox.margin>
+                     </Button>
+                     <Button fx:id="removeExclusionButton" disable="true" layoutX="140.0" layoutY="10.0" mnemonicParsing="false" onAction="#removeExclusion" prefHeight="25.0" prefWidth="59.0" text="Remove">
+                        <HBox.margin>
+                           <Insets left="7.0" />
                         </HBox.margin>
                      </Button>
                   </children>
-                  <VBox.margin>
-                     <Insets bottom="15.0" />
-                  </VBox.margin>
                </HBox>
                <Label layoutX="20.0" layoutY="30.0" text="Add Settlement:" />
                <HBox layoutX="20.0" layoutY="197.0" prefWidth="230.0">
@@ -219,7 +234,7 @@
                </ImageView>
             </graphic>
          </ToggleButton>
-         <Button layoutX="137.0" layoutY="620.0" mnemonicParsing="false" onAction="#saveMapData" prefHeight="25.0" prefWidth="32.0">
+         <Button layoutX="140.0" layoutY="620.0" mnemonicParsing="false" onAction="#saveMapData" prefHeight="25.0" prefWidth="32.0">
             <graphic>
                <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -228,6 +243,15 @@
                </ImageView>
             </graphic>
          </Button>
+         <ToggleButton fx:id="showRoutesButton" layoutX="85.0" layoutY="620.0" mnemonicParsing="false" onAction="#showRoutes" prefHeight="25.0" prefWidth="32.0">
+            <graphic>
+               <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/magnify.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </ToggleButton>
       </children>
    </Pane>
 </HBox>
