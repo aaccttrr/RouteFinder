@@ -14,7 +14,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
